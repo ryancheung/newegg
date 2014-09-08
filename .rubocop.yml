@@ -1,0 +1,7 @@
+Metrics/LineLength:
+  AllowURI: true
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+

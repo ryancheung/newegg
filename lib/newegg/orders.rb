@@ -19,5 +19,45 @@ module Newegg
 
       get('/v1/order', options)
     end
+
+    # Get order details
+    # @param order_number [String] Required.
+    #
+    # @return [Hash]
+    def order_details(order_number)
+      get("/v1/order/#{order_number}")
+    end
+
+    # Ship order
+    # @param order_number [String] Required.
+    # @param options [Hash]
+    # @option options [String] :ShippingService SEF --- 商家自送 SF --- 顺风 YTO --- 圆通 STO --- 申通 YUNDA --- 韵达 ZTO --- 中通 TTK --- 天天 HT --- 汇通 EMS --- EMS ZJS --- 宅急送 OTHER --- 其它
+    # @option options [String] :PackageNumber Tracking number
+    def ship_order(order_number, options)
+      params = {
+        OperationType: 'UpdateOrder',
+        Shipment: {
+          ShippingService: options.fetch(:ShippingService),
+          PackageNumber: options.fetch(:PackageNumber)
+        }
+      }
+
+      post("/v1/order/#{order_number}", params)
+    end
+
+    # Cancel order
+    # @param order_number [String] Required.
+    # @param options [Hash]
+    # @option options [String] :Reason Optional.
+    def cancel_order(order_number, options)
+      params = {
+        OperationType: 'UpdateOrder',
+        OrderNumber: order_number,
+        Action: 4,
+        Reason: options.fetch(:Reason)
+      }
+
+      post("/v1/order/#{order_number}", params)
+    end
   end
 end

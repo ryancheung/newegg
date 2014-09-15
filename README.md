@@ -1,6 +1,6 @@
 # Newegg
 
-TODO: Write a gem description
+Newegg Marketplace API wrapper
 
 ## Installation
 
@@ -20,11 +20,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    client = Newegg::Client.new(app_key: 'your_app_key', access_token: 'your_access_token')
+    client.order_details('1843243242343')
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/newegg/fork )
+1. Fork it ( https://github.com/ryancheung/newegg/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

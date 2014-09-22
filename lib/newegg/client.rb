@@ -8,7 +8,7 @@ module Newegg
   class Client
     include Newegg::API
 
-    DEFAULT_ENDPOINT = 'https://api.newegg.com.cn'
+    DEFAULT_ENDPOINT = 'https://api.newegg.cn'
 
     attr_reader :app_key, :access_token
 
@@ -16,9 +16,11 @@ module Newegg
     # @param options [Hash]
     # @option options [String] :app_key Required.
     # @option options [String] :access_token Required.
+    # @option options [String] :endpoint Optional.
     def initialize(options)
       @app_key = options.fetch(:app_key)
       @access_token = options.fetch(:access_token)
+      @endpoint = options[:endpoint]
     end
 
     # @return [String]
